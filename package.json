@@ -2,7 +2,7 @@
   "name": "hyperswarm-ws",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "client.js",
   "bin": {
     "hyperswarm-ws-gateway": "bin/gateway.js"
   },
@@ -15,7 +15,7 @@
   },
   "keywords": [],
   "author": "Jan Kaßel <jan@kassel.works>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/falafeljan/hyperswarm-ws/issues"
   },
