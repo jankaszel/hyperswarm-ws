@@ -1,32 +1,31 @@
 {
-  "name": "hyperswarm-webrtc-bridge",
+  "name": "hyperswarm-ws",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "bin": {
-    "hyperswarm-webrtc-bridge": "bin/bridge.js"
+    "hyperswarm-ws-gateway": "bin/gateway.js"
   },
   "scripts": {
     "test": "standard"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/falafeljan/hyperswarm-webrtc-bridge.git"
+    "url": "git+https://github.com/falafeljan/hyperswarm-ws.git"
   },
   "keywords": [],
   "author": "Jan Kaßel <jan@kassel.works>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/falafeljan/hyperswarm-webrtc-bridge/issues"
+    "url": "https://github.com/falafeljan/hyperswarm-ws/issues"
   },
-  "homepage": "https://github.com/falafeljan/hyperswarm-webrtc-bridge#readme",
+  "homepage": "https://github.com/falafeljan/hyperswarm-ws#readme",
   "dependencies": {
-    "@geut/discovery-swarm-webrtc": "^2.2.4",
     "crypto-browserify": "^3.12.0",
     "debug": "^4.1.1",
     "hyperswarm-proxy": "^1.0.0",
     "minimist": "^1.2.0",
-    "wrtc": "^0.4.2"
+    "websocket-stream": "^5.5.0"
   },
   "devDependencies": {
     "standard": "^14.3.1"
