@@ -13,7 +13,11 @@
     "type": "git",
     "url": "git+https://github.com/falafeljan/hyperswarm-ws.git"
   },
-  "keywords": [],
+  "keywords": [
+    "hyperswarm",
+    "websocket",
+    "p2p"
+  ],
   "author": "Jan Kaßel <jan@kassel.works>",
   "license": "MIT",
   "bugs": {
