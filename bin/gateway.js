@@ -24,7 +24,7 @@ async function main (port) {
   debug(`http server listening on port ${port}`)
 
   const proxyServer = new HyperswarmProxyServer({ ephemeral: false })
-  const wss = websocket.createServer({ server }, handle)
+  websocket.createServer({ server }, handle)
 
   function handle (stream) {
     debug('handling new websocket stream')
