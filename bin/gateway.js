@@ -30,6 +30,13 @@ async function main (port) {
     debug('handling new websocket stream')
     proxyServer.handleStream(stream)
   }
+
+  function shutdown () {
+    proxyServer.destroy()
+  }
+
+  process.on('SIGINT', shutdown)
+  process.on('SIGTERM', shutdown)
 }
 
 main(Number.parseInt(argv.port))
