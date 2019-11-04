@@ -7,7 +7,10 @@ const topic = crypto
   .createHash('sha256')
   .update('hyperswarm-ws-example')
   .digest()
+const id = 'node example'
 const message = 'yee'
+
+const connections = new Set()
 
 async function main () {
   try {
@@ -22,16 +25,33 @@ async function main () {
   }
 
   swarm.on('connection', socket => {
-    socket.on('data', data => console.log(`received: ${data.toString()}`))
+    connections.add(socket)
 
-    socket.end(Buffer.from(message))
-    console.log(`sent: ${message}`)
+    socket.on('data', data => {
+      const { from, message } = JSON.parse(data.toString())
+      console.log(`> (${from}) ${message}`)
+    })
+    socket.on('close', () => connections.delete(socket))
+
+    socket.write(
+      Buffer.from(
+        JSON.stringify({
+          from: id,
+          message
+        })
+      )
+    )
+    console.log(`sent: @(${id}) ${message}`)
   })
 
   swarm.join(topic)
   console.log(`joined topic: ${topic.toString('hex')}`)
 
   process.on('SIGINT', () => {
+    for (const socket of connections) {
+      socket.destroy()
+    }
+
     swarm.leave(topic)
     swarm.destroy()
   })
