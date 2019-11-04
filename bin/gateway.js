@@ -29,7 +29,7 @@ async function main (port) {
     }
   })
   server.listen(port)
-  debug(`http server listening on port ${port}`)
+  process.stdout.write(`gateway http server listening on port ${port}`)
 
   const proxyServer = new HyperswarmProxyServer({ ephemeral: false })
   websocket.createServer({ server }, handle)

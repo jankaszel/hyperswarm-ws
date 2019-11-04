@@ -1,6 +1,6 @@
 {
   "name": "hyperswarm-ws",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Joining Hyperswarms via WebSocket gateways",
   "main": "client.js",
   "bin": {
