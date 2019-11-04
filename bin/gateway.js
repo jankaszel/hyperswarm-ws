@@ -4,7 +4,7 @@ const http = require('http')
 const parseArgs = require('minimist')
 const websocket = require('websocket-stream')
 const HyperswarmProxyServer = require('hyperswarm-proxy/server')
-const debug = require('debug')('hyperswarm-ws-gateway')
+const debug = require('debug')('hyperswarm-ws:gateway')
 
 const argv = parseArgs(process.argv.slice(2), {
   string: ['port'],
