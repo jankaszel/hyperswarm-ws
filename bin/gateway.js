@@ -19,7 +19,15 @@ const argv = parseArgs(process.argv.slice(2), {
 async function main (port) {
   assert(Number.isInteger(port), 'Not a valid port number provided')
 
-  const server = http.createServer()
+  const server = http.createServer((req, res) => {
+    if (req.method === 'GET' && req.url === '/') {
+      res.statusCode = 200
+      res.end('hyperswarm websocket gateway\n')
+    } else {
+      res.statusCode = 404
+      res.end('not found')
+    }
+  })
   server.listen(port)
   debug(`http server listening on port ${port}`)
 
