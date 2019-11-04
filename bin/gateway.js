@@ -33,6 +33,7 @@ async function main (port) {
 
   function shutdown () {
     proxyServer.destroy()
+    server.close()
   }
 
   process.on('SIGINT', shutdown)
