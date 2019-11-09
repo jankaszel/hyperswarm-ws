@@ -1,2 +1,2 @@
-const { createBrowserSwarm, BrowserSwarm } = require('./lib/browser-swarm')
-module.exports = { createBrowserSwarm, BrowserSwarm }
+const { createClientSwarm, ClientSwarm } = require('./lib/client-swarm')
+module.exports = { createClientSwarm, ClientSwarm }
