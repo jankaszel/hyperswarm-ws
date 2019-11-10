@@ -6,9 +6,9 @@ Use a WebSocket gateway to bridge Hyperswarm connections via [`hyperswarm-proxy`
 
 #### `new ClientSwarm(gateway, [opts])`
 
-Create a new client instance that connects to a WebSocket gateway given the a gateway URL. `gateway` may alternatively be a connection stream `ws` (created using [`websocket-stream`](https://github.com/maxogden/websocket-stream)).
+Create a new client instance that connects to a WebSocket gateway given the a gateway URL. `gateway` may alternatively be a websocket connection stream (created using [`websocket-stream`](https://github.com/maxogden/websocket-stream)).
 
-The class extends `HyperswarmProxyClient` of [`hyperswarm-proxy`]((https://github.com/RangerMauve/hyperswarm-proxy), so it will
+The class extends `HyperswarmProxyClient` of [`hyperswarm-proxy`](https://github.com/RangerMauve/hyperswarm-proxy), so it will
 * pass any opts to its parent constructor, and
 * inherit all instance methods, such as `reconnect`, `join`, `leave`, `destroy`.
 
