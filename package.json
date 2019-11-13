@@ -28,6 +28,7 @@
     "crypto-browserify": "^3.12.0",
     "debug": "^4.1.1",
     "hyperswarm-proxy": "^1.2.1",
+    "is-stream": "^2.0.0",
     "minimist": "^1.2.0",
     "websocket-stream": "^5.5.0"
   },
