@@ -11,17 +11,17 @@ npm install hyperswarm-ws
 Join a Hyperswarm via a WebSocket gateway. For more, look up the [Hyperswarm documentation](https://github.com/hyperswarm/hyperswarm).
 
 ```js
-const crypto = require("crypto");
-const { ClientSwarm } = require("hyperswarm-ws");
+const crypto = require('crypto')
+const { ClientSwarm } = require('hyperswarm-ws')
 
 // look for peers listed under this topic
 const topic = crypto
-  .createHash("sha256")
-  .update("my-hyperswarm-topic")
-  .digest();
+  .createHash('sha256')
+  .update('my-hyperswarm-topic')
+  .digest()
 
-const swarm = new ClientSwarm(topic);
-swarm.join(topic);
+const swarm = new ClientSwarm('ws://localhost:4200')
+swarm.join(topic)
 ```
 
 ## API
