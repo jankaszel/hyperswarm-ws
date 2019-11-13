@@ -1,20 +1,26 @@
+// IMPORTANT: run `npm i --no-save hyperswarm` before.
 // see a browser-based example at <https://glitch.com/~hyperswarm-ws-exampe>
 const crypto = require('crypto')
-const { createBrowserSwarm } = require('./')
+const debug = require('debug')
 
-let swarm
+// extra dependency
+const Hyperswarm = require('hyperswarm')
+const { createClientSwarm } = require('./')
+
+const debugPeer = debug('example-peer')
+const debugClient = debug('example-client')
+debug.enable('example*')
+
 const topic = crypto
   .createHash('sha256')
   .update('hyperswarm-ws-example')
   .digest()
-const id = 'node example'
 const message = 'yee'
 
-const connections = new Set()
-
 async function main () {
+  let clientSwarm
   try {
-    swarm = await createBrowserSwarm(['ws://localhost:4200'])
+    clientSwarm = await createClientSwarm(['ws://localhost:4200'])
   } catch (err) {
     if (err.code === 'EBADGATEWAYS') {
       console.error("Couldn't connect to provided gateways.")
@@ -24,12 +30,27 @@ async function main () {
     }
   }
 
+  const hyperswarm = Hyperswarm()
+
+  setupSwarm('peer', hyperswarm, topic, {
+    joinOpts: {
+      announce: true,
+      lookup: false
+    },
+    log: debugPeer
+  })
+
+  setupSwarm('client', clientSwarm, topic, { log: debugClient })
+}
+
+function setupSwarm (id, swarm, topic, { joinOpts = {}, log = console.log }) {
+  const connections = new Set()
   swarm.on('connection', socket => {
     connections.add(socket)
 
     socket.on('data', data => {
       const { from, message } = JSON.parse(data.toString())
-      console.log(`> (${from}) ${message}`)
+      log(`> (${from}) ${message}`)
     })
     socket.on('close', () => connections.delete(socket))
 
@@ -41,11 +62,11 @@ async function main () {
         })
       )
     )
-    console.log(`sent: @(${id}) ${message}`)
+    log(`sent: @(${id}) ${message}`)
   })
 
-  swarm.join(topic)
-  console.log(`joined topic: ${topic.toString('hex')}`)
+  swarm.join(topic, joinOpts)
+  log(`joined topic: ${topic.toString('hex')}`)
 
   process.on('SIGINT', () => {
     for (const socket of connections) {
