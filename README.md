@@ -32,7 +32,9 @@ Create a new client instance that connects to a WebSocket gateway given the a ga
 
 The class extends `HyperswarmProxyClient` of [`hyperswarm-proxy`](https://github.com/RangerMauve/hyperswarm-proxy), so it will
 
-- pass any opts to its parent constructor, and
+- use the options specified by `opts`, with
+  - `opts.pingInterval` being the interval used for pinging clients (default: 3500 ms),
+- pass all other opts to its parent constructor, and
 - inherit all instance methods, such as `reconnect`, `join`, `leave`, `destroy`.
 
 #### `swarm = async createClientSwarm(gatewayUrls)`
