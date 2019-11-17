@@ -24,7 +24,7 @@ async function main (port) {
   process.stdout.write(`Gateway HTTP server listening on port ${port}\n`)
 
   function shutdown () {
-    serverSwarm.destroy(() => server.close())
+    serverSwarm.destroy(() => server.close(() => process.exit(0)))
   }
 
   process.on('SIGINT', shutdown)
